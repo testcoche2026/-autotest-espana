@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Practica preguntas de conducción y señales de tráfico en España con AutoTest España.">
+<title>AutoTest España — Practica el teórico</title>
+<style>
+:root{--green:#176b45;--green2:#e8f5ed;--ink:#17231d;--muted:#637169;--paper:#f5f8f6;--line:#dce6df;--white:#fff;--red:#b83232}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{max-width:1000px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:850;letter-spacing:-.5px;color:var(--green);font-size:1.15rem}.brand span{color:var(--ink)}
+nav{display:flex;gap:8px;flex-wrap:wrap}button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 15px;font-weight:700}
+nav button{background:transparent;color:var(--muted)}nav button.active,nav button:hover{background:var(--green2);color:var(--green)}
+main{max-width:1000px;margin:28px auto;padding:0 20px 50px}.hero{background:linear-gradient(125deg,#123f2d,#218356);color:white;padding:34px;border-radius:24px;display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:center;box-shadow:0 12px 35px #153b2a18}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-1.6px;margin:8px 0 14px}.hero p{color:#e2f4e8;max-width:560px}.eyebrow{text-transform:uppercase;letter-spacing:1.4px;font-size:.75rem;font-weight:800;color:#c9f3d9}
+.hero-art{font-size:6rem;text-align:center;filter:drop-shadow(0 8px 5px #001d1040)}.primary{background:#fff;color:var(--green)}.secondary{background:var(--green2);color:var(--green)}.dark{background:var(--green);color:#fff}.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:20px}.card .emoji{font-size:1.8rem}.card h3{margin:8px 0 4px}.card p{color:var(--muted);font-size:.94rem;margin:0 0 16px}.section-title{margin:30px 0 12px;letter-spacing:-.5px}
+.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,4vw,30px)}.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.pill{background:var(--green2);color:var(--green);border-radius:99px;padding:5px 10px;font-size:.85rem;font-weight:750}.progress{height:8px;background:#e7eee9;border-radius:99px;overflow:hidden;margin:18px 0}.progress div{height:100%;background:var(--green);width:0;transition:width .2s}.answers{display:grid;gap:10px;margin:18px 0}.answer{border:1px solid var(--line);background:#fff;text-align:left;padding:14px;border-radius:12px;font-weight:600}.answer:hover{border-color:var(--green)}.answer.selected{border:2px solid var(--green);background:var(--green2)}.answer.correct{border:2px solid #24834f;background:#e8f8ee}.answer.wrong{border:2px solid var(--red);background:#fff0f0}.feedback{padding:13px 15px;border-radius:12px;background:#f0f4f1;margin:12px 0}.row-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}
+.sign-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.sign{border:1px solid var(--line);border-radius:16px;padding:18px;background:white;text-align:center}.sign-shape{height:100px;display:grid;place-items:center;font-size:3.4rem}.sign h3{font-size:1rem;margin:8px 0}.sign p{font-size:.9rem;color:var(--muted);margin:0}
+.score{font-size:3.3rem;font-weight:850;color:var(--green);line-height:1.2}.result-list{display:grid;gap:12px;margin-top:20px}.review{border:1px solid var(--line);border-radius:12px;padding:14px}.review small{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--muted);font-size:.85rem;background:white}
+.hidden{display:none!important}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:25px}.hero-art{display:none}.cards{grid-template-columns:1fr}.sign-grid{grid-template-columns:repeat(2,1fr)}.nav{align-items:flex-start;flex-direction:column}nav{width:100%}nav button{padding:8px 10px}main{margin-top:18px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">🚘 <span>AutoTest</span> España</div><nav aria-label="Navegación principal">
+<button class="active" data-page="inicio">Inicio</button><button data-page="test">Hacer test</button><button data-page="senales">Señales</button><button data-page="resultados">Resultados</button>
+</nav></div></header>
+<main>
+<section id="inicio" class="page">
+<div class="hero"><div><div class="eyebrow">Tu práctica empieza aquí</div><h1>Prepárate para conducir con confianza.</h1><p>Practica normas de circulación, pon a prueba tus conocimientos y aprende de tus errores a tu ritmo.</p><button class="primary" onclick="startTest()">Empezar test&nbsp; →</button></div><div class="hero-art" aria-hidden="true">🚗<br>🛣️</div></div>
+<h2 class="section-title">¿Qué quieres practicar hoy?</h2>
+<div class="cards">
+<article class="card"><div class="emoji">📝</div><h3>Test de conducir</h3><p>Preguntas tipo test con tres opciones y explicación al responder.</p><button class="dark" onclick="startTest()">Hacer un test</button></article>
+<article class="card"><div class="emoji">🚦</div><h3>Señales de tráfico</h3><p>Repasa algunas señales frecuentes y su significado.</p><button class="secondary" onclick="showPage('senales')">Repasar señales</button></article>
+<article class="card"><div class="emoji">📊</div><h3>Tus resultados</h3><p>Consulta tu último resultado guardado en este navegador.</p><button class="secondary" onclick="showPage('resultados')">Ver resultados</button></article>
+</div>
+<div class="panel"><strong>Un consejo:</strong> lee con atención todas las respuestas y utiliza las explicaciones para aprender, no solo para memorizar.</div>
+</section>
+
+<section id="test" class="page hidden">
+<div class="panel">
+<div class="topline"><span class="pill" id="question-count">Pregunta 1 de 10</span><span class="muted" id="live-score">Respondidas: 0</span></div>
+<div class="progress"><div id="progress-bar"></div></div>
+<h2 id="question-text">Pregunta</h2>
+<div id="answers" class="answers"></div>
+<div id="feedback" class="feedback hidden" aria-live="polite"></div>
+<div class="row-actions"><button class="secondary" onclick="showPage('inicio')">Salir</button><button id="next-btn" class="dark" onclick="nextQuestion()" disabled>Siguiente →</button></div>
+</div>
+</section>
+
+<section id="senales" class="page hidden">
+<div class="topline"><div><div class="eyebrow" style="color:var(--green)">Aprende a reconocerlas</div><h1 class="section-title">Señales de tráfico</h1></div><span class="pill">Guía de repaso</span></div>
+<p class="muted">Ejemplos ilustrativos para estudiar. Consulta siempre el catálogo y la normativa oficial vigente.</p>
+<div class="sign-grid">
+<article class="sign"><div class="sign-shape">🛑</div><h3>STOP</h3><p>Detención obligatoria antes de continuar, cuando sea seguro hacerlo.</p></article>
+<article class="sign"><div class="sign-shape">⚠️</div><h3>Peligro</h3><p>Advierte de un peligro en la vía. Modera la velocidad y extrema la atención.</p></article>
+<article class="sign"><div class="sign-shape">⛔</div><h3>Entrada prohibida</h3><p>Prohíbe el acceso a los vehículos a los que se dirige la señal.</p></article>
+<article class="sign"><div class="sign-shape">🔵⬆️</div><h3>Sentido obligatorio</h3><p>Indica la dirección que deben seguir los vehículos afectados.</p></article>
+<article class="sign"><div class="sign-shape">🚸</div><h3>Zona escolar o peatonal</h3><p>Presta especial atención a peatones y reduce la velocidad si procede.</p></article>
+<article class="sign"><div class="sign-shape">🚫🅿️</div><h3>Prohibido estacionar</h3><p>El estacionamiento está prohibido según las condiciones de la señal.</p></article>
+</div>
+</section>
+
+<section id="resultados" class="page hidden">
+<div class="panel">
+<div class="eyebrow" style="color:var(--green)">Tu progreso</div><h1 class="section-title">Resultados del último test</h1>
+<div id="no-results"><p>Aún no has completado ningún test en este navegador.</p><button class="dark" onclick="startTest()">Hacer mi primer test</button></div>
+<div id="results-content" class="hidden"><div class="score" id="final-score">0/10</div><p id="result-summary"></p><div class="progress"><div id="result-progress"></div></div><div id="review-list" class="result-list"></div><button class="dark" style="margin-top:20px" onclick="startTest()">Repetir test</button></div>
+</div>
+</section>
+</main>
+<footer>AutoTest España · Proyecto independiente de práctica. No está afiliado a la DGT ni sustituye el manual oficial o la formación de una autoescuela.</footer>
+<script>
+const questions = [
+{q:"En una vía urbana, ¿qué debes hacer ante un paso para peatones señalizado si hay personas cruzando?",a:["Acelerar para pasar antes","Detenerte y cederles el paso","Tocar el claxon para avisar"],c:1,e:"Debes ceder el paso a los peatones que estén cruzando por un paso señalizado."},
+{q:"¿Qué indica una señal de STOP?",a:["Reducir un poco la velocidad","Detenerse solo si vienen vehículos","Detención obligatoria"],c:2,e:"La señal de STOP obliga a detener el vehículo y continuar cuando sea seguro y se haya respetado la prioridad."},
+{q:"Si llueve intensamente, ¿cómo debes adaptar la conducción?",a:["Aumentar la distancia de seguridad y reducir la velocidad","Mantener la misma distancia","Frenar bruscamente en los charcos"],c:0,e:"Con lluvia disminuye la adherencia; aumenta la distancia de seguridad y adapta la velocidad."},
+{q:"¿Puedes utilizar el teléfono móvil sujetándolo con la mano mientras conduces?",a:["Sí, si circulas despacio","No, está prohibido","Sí, en un semáforo en rojo"],c:1,e:"El uso del móvil sujetándolo con la mano mientras conduces está prohibido."},
+{q:"En una glorieta, como norma general, ¿quién tiene prioridad?",a:["Quien va a entrar siempre","Los vehículos que ya circulan dentro, salvo señalización que indique otra cosa","El vehículo más grande"],c:1,e:"Como norma general, tienen prioridad quienes ya circulan por la glorieta, atendiendo siempre a las señales."},
+{q:"¿Qué debes hacer si se aproxima un vehículo prioritario en servicio urgente con señales activadas?",a:["Facilitarle el paso con seguridad","Seguir igual porque debe adelantarte","Detenerte siempre en mitad de la calzada"],c:0,e:"Debes facilitar el paso apartándote o deteniéndote si hace falta, sin crear peligro."},
+{q:"¿Qué significa una línea continua que separa sentidos de circulación?",a:["Puedes cruzarla si tienes prisa","No debes atravesarla ni circular sobre ella, salvo excepciones previstas","Indica un carril reservado para bicicletas"],c:1,e:"La línea continua prohíbe, como regla general, atravesarla o circular sobre ella."},
+{q:"Antes de cambiar de carril, ¿qué debes hacer?",a:["Señalizar y comprobar que puedes hacerlo sin peligro","Cambiar primero y señalizar después","Mirar solo el espejo interior"],c:0,e:"Comprueba el entorno y los ángulos muertos, señaliza con antelación y realiza la maniobra solo si es segura."},
+{q:"¿Qué debes hacer al acercarte a un paso a nivel con barrera bajada?",a:["Pasar rápidamente si no ves trenes","Esperar y no cruzar hasta que esté permitido","Rodear la barrera si no viene nadie"],c:1,e:"Nunca cruces con la barrera bajada o en movimiento; espera a que la señalización permita continuar."},
+{q:"¿Para qué sirve principalmente el cinturón de seguridad?",a:["Solo para evitar multas","Para reducir el riesgo de lesiones en caso de accidente","Solo en carretera"],c:1,e:"El cinturón reduce el riesgo de lesiones y debe utilizarse según la normativa aplicable."}
+];
+let order=[], index=0, chosen={}, checked={}, lastResult=null;
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('hidden',p.id!==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='resultados')renderResults();window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function startTest(){order=[...questions.keys()].sort(()=>Math.random()-.5);index=0;chosen={};checked={};showPage('test');renderQuestion();}
+function renderQuestion(){
+ const q=questions[order[index]];document.getElementById('question-count').textContent=`Pregunta ${index+1} de ${order.length}`;document.getElementById('live-score').textContent=`Respondidas: ${Object.keys(checked).length}`;document.getElementById('progress-bar').style.width=`${index/order.length*100}%`;document.getElementById('question-text').textContent=q.q;
+ const box=document.getElementById('answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=a;b.disabled=!!checked[index];if(chosen[index]===i)b.classList.add('selected');if(checked[index]&&i===q.c)b.classList.add('correct');if(checked[index]&&chosen[index]===i&&i!==q.c)b.classList.add('wrong');b.onclick=()=>{chosen[index]=i;renderQuestion();};box.appendChild(b);});
+ const fb=document.getElementById('feedback');fb.classList.toggle('hidden',!checked[index]);if(checked[index])fb.textContent=(chosen[index]===q.c?'¡Correcto! ':'Respuesta incorrecta. ')+q.e;
+ const next=document.getElementById('next-btn');next.disabled=chosen[index]===undefined||!!checked[index];next.textContent=index===order.length-1?'Terminar test ✓':'Comprobar respuesta';
+}
+function nextQuestion(){
+ if(!checked[index]){if(chosen[index]===undefined)return;checked[index]=true;const q=questions[order[index]];if(index===order.length-1){finishTest();return;}renderQuestion();document.getElementById('next-btn').disabled=false;document.getElementById('next-btn').textContent='Siguiente →';document.getElementById('next-btn').onclick=()=>{index++;renderQuestion();document.getElementById('next-btn').onclick=nextQuestion;};return;}
+ if(index<order.length-1){index++;renderQuestion();}
+}
+function finishTest(){
+ let correct=0;const review=order.map((qi,i)=>{const q=questions[qi],ok=chosen[i]===q.c;if(ok)correct++;return {q,selected:chosen[i],ok};});
+ lastResult={correct,total:order.length,review,date:new Date().toLocaleString('es-ES')};
+ try{localStorage.setItem('autotestLastResult',JSON.stringify(lastResult));}catch(e){}
+ document.getElementById('progress-bar').style.width='100%';showPage('resultados');renderResults();
+}
+function renderResults(){
+ let data=lastResult;try{if(!data)data=JSON.parse(localStorage.getItem('autotestLastResult')||'null');}catch(e){}
+ const empty=document.getElementById('no-results'),content=document.getElementById('results-content');empty.classList.toggle('hidden',!!data);content.classList.toggle('hidden',!data);if(!data)return;
+ document.getElementById('final-score').textContent=`${data.correct}/${data.total}`;document.getElementById('result-summary').textContent=`${Math.round(data.correct/data.total*100)}% de aciertos · Completado: ${data.date||'fecha no disponible'}`;document.getElementById('result-progress').style.width=`${data.correct/data.total*100}%`;
+ const list=document.getElementById('review-list');list.innerHTML='';data.review.forEach((r,i)=>{const el=document.createElement('div');el.className='review';const h=document.createElement('strong');h.textContent=`${r.ok?'✓':'✗'} ${i+1}. ${r.q.q}`;const p=document.createElement('p');p.textContent=`Tu respuesta: ${r.selected===undefined?'Sin responder':r.q.a[r.selected]}`;const ans=document.createElement('small');ans.textContent=`Respuesta correcta: ${r.q.a[r.q.c]}`;const ex=document.createElement('p');ex.textContent=r.q.e;el.append(h,p,ans,ex);list.appendChild(el);});
+}
+renderResults();
+</script>
+</body>
+</html>
